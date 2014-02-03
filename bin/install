@@ -18,6 +18,17 @@ cp ${OPENSHIFT_AEROGEAR_PUSH_DIR}/versions/${version}/standalone/deployments/ag-
 mkdir -p ${OPENSHIFT_AEROGEAR_PUSH_DIR}/usr/modules/org/jboss/aerogear/simplepush/main
 ln -s ${OPENSHIFT_AEROGEAR_PUSH_DIR}/versions/${version}/modules/org/jboss/aerogear/simplepush/main/* ${OPENSHIFT_AEROGEAR_PUSH_DIR}/usr/modules/org/jboss/aerogear/simplepush/main
 
+# Add Keycloak modules
+mkdir -p ${OPENSHIFT_AEROGEAR_PUSH_DIR}/usr/modules/org/bouncycastle/main
+mkdir -p ${OPENSHIFT_AEROGEAR_PUSH_DIR}/usr/modules/org/keycloak/keycloak-adapter-core/main
+mkdir -p ${OPENSHIFT_AEROGEAR_PUSH_DIR}/usr/modules/org/keycloak/keycloak-as7-adapter/main
+mkdir -p ${OPENSHIFT_AEROGEAR_PUSH_DIR}/usr/modules/org/keycloak/keycloak-core/main
+
+ln -s ${OPENSHIFT_AEROGEAR_PUSH_DIR}/versions/${version}/modules/org/bouncycastle/main/* ${OPENSHIFT_AEROGEAR_PUSH_DIR}/usr/modules/org/bouncycastle/main
+ln -s ${OPENSHIFT_AEROGEAR_PUSH_DIR}/versions/${version}/modules/org/keycloak/keycloak-adapter-core/main/* ${OPENSHIFT_AEROGEAR_PUSH_DIR}/usr/modules/org/keycloak/keycloak-adapter-core/main
+ln -s ${OPENSHIFT_AEROGEAR_PUSH_DIR}/versions/${version}/modules/org/keycloak/keycloak-as7-adapter/main/* ${OPENSHIFT_AEROGEAR_PUSH_DIR}/usr/modules/org/keycloak/keycloak-as7-adapter/main
+ln -s ${OPENSHIFT_AEROGEAR_PUSH_DIR}/versions/${version}/modules/org/keycloak/keycloak-core/main/* ${OPENSHIFT_AEROGEAR_PUSH_DIR}/usr/modules/org/keycloak/keycloak-core/main
+
 # Generate the token key for SimplePush
 token_key=$(generate_password)
 echo "$token_key" > ${OPENSHIFT_AEROGEAR_PUSH_DIR}/env/OPENSHIFT_AEROGEAR_PUSH_TOKEN_KEY
